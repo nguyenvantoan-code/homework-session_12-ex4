@@ -49,6 +49,8 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           envs: GHCR_USER,GHCR_TOKEN
           script: |
+            echo  "Login server successfully..."
+            
             echo "$GHCR_TOKEN" | docker login ghcr.io -u "$GHCR_USER" --password-stdin
             docker pull ghcr.io/${{ github.repository }}:latest
             echo  "Pulling Docker image successfully..."
