@@ -51,6 +51,7 @@ jobs:
           script: |
             echo "$GHCR_TOKEN" | docker login ghcr.io -u "$GHCR_USER" --password-stdin
             docker pull ghcr.io/${{ github.repository }}:latest
+            echo  "Pulling Docker image successfully..."
             docker stop app || true
             docker rm app || true
             docker run -d --name app --restart unless-stopped -p 8080:8080 ghcr.io/${{ github.repository }}:latest
